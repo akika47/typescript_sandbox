@@ -1,23 +1,28 @@
-const numEl: HTMLInputElement = document.getElementById("inputNum") as HTMLInputElement
+// function giveBack(par:number){
+//     console.log("valami valami");
+//     return par;
+// }
 
-const resultEl: HTMLParagraphElement = document.getElementById("result") as HTMLParagraphElement
+// function giveBackString(par:string){
+//     console.log("valami valami");
+//     return par;
+// }
 
-const theNumber = Math.floor(Math.random() * 100 ) + 1
-
-function guess(){
-    const guessNumber: number = numEl.valueAsNumber
-    if(isCorrect(guessNumber)){
-        resultEl.innerText = "Eltaláltad!"
-    }else{
-        if (guessNumber < theNumber) {
-            resultEl.innerText = "A gondolt szám nagyobb!"
-        }
-        else{
-            resultEl.innerText = "A gondolt szám kisebb!"
-        }
-    }
+type Ship = {
+    length: number,
+    captainName: string
 }
 
-function isCorrect(guessNumber: number) : boolean {
-    return guessNumber === theNumber
+function giveBack<T extends {'length' : number}>(par: T) : T {
+        console.log("valami hossza: " + par.length);
+        return par;
 }
+
+let titanic: Ship = {
+    length: 269,
+    captainName: "Jack Sparrow"
+}
+
+giveBack<number[]>([10]);
+giveBack<string>("alma");
+giveBack<Ship>(titanic)
